@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <title>ShareTrip - Bidaiak Kontsultatu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .search-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        select, input {
+            padding: 8px 12px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 150px;
+        }
+        .bilatu-btn {
+            background-color: #68b984;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .aurkitutako-bidaiak {
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background-color: #f8f9fa;
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+        td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        .info-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pagination a, .pagination span {
+            padding: 8px 12px;
+            margin: 0 4px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+        }
+        .pagination .active {
+            background-color: #68b984;
+            color: white;
+        }
+        .erakusten {
+            text-align: right;
+            margin-top: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>ShareTrip - Bidaiak Kontsultatu</h1>
+
+    <div class="search-container">
+        <select id="jatorria">
+            <option value="">Jatorria</option>
+            <% hiriak.forEach(function(hiria) { %>
+                <option value="<%= hiria %>"><%= hiria %></option>
+            <% }); %>
+        </select>
+
+        <select id="helmuga">
+            <option value="">Helmuga</option>
+            <% hiriak.forEach(function(hiria) { %>
+                <option value="<%= hiria %>"><%= hiria %></option>
+            <% }); %>
+        </select>
+
+        <input type="date" id="data">
+
+        <select id="plaza-kopurua">
+            <option value="">Plaza kopurua</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+        <button class="bilatu-btn" onclick="bilatu()">Bilatu</button>
+    </div>
+
+    <div class="aurkitutako-bidaiak">
+        Aurkitutako bidaiak: 3
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Jatorria ▼</th>
+                <th>Helmuga ▼</th>
+                <th>Data ▼</th>
+                <th>Plazak ▼</th>
+                <th>Prezioa ▼</th>
+                <th>Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% bidaiak.forEach(function(bidaia) { %>
+                <tr>
+                    <td><%= bidaia.jatorria %></td>
+                    <td><%= bidaia.helmuga %></td>
+                    <td><%= bidaia.data %></td>
+                    <td><%= bidaia.plazak %></td>
+                    <td><%= bidaia.prezioa %>€</td>
+                    <td><button class="info-btn">+</button></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <a href="#">«</a>
+        <span class="active">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">»</a>
+    </div>
+
+    <div class="erakusten">
+        Erakusten: 1-3 / 8 bidaia
+    </div>
+
+    <script>
+        function bilatu() {
+            const jatorria = document.getElementById('jatorria').value;
+            const helmuga = document.getElementById('helmuga').value;
+            const data = document.getElementById('data').value;
+            const plazak = document.getElementById('plaza-kopurua').value;
+            
+            console.log('Bilaketa parametroak:', { jatorria, helmuga, data, plazak });
+        }
+    </script>
+</body>
+</html> 
